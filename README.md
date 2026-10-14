@@ -6,7 +6,7 @@
 
 - 覆盖产品: 11 款桌面产品；语言: en / cs；版本线: 15 / 16.0~16.3 / 17 / 18
 - 平台: Windows (x64/x86) · macOS (Universal/Apple Silicon/Intel) · Linux AppImage (x86_64/aarch64)
-- 当前收录 190 个 Release，共 64.4 GiB
+- 当前收录 182 个 Release，共 64.4 GiB
 - 每个 Release 对应「产品 × 平台 × 版本」，tag 形如 `premium-windows-18.0.3`
 
 ## Navicat Premium
