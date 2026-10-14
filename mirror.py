@@ -290,6 +290,15 @@ def vkey(version):
     return tuple(int(x) if x.isdigit() else -1 for x in re.split(r"[.-]", version))
 
 
+def asset_label(name):
+    """文件名 → 简短标签，如 x64 / Apple Silicon / aarch64；官方重打包另存的带日期后缀。"""
+    arch = re.search(r"(x64|x86|arm64|aarch64|x86_64)?(?:-(\d{8}))?\.(exe|dmg|AppImage)$", name)
+    a, date, ext = arch.groups()
+    label = {"dmg": {"arm64": "Apple Silicon", "x86_64": "Intel"}.get(a, "Universal"),
+             "AppImage": a or "x86_64"}.get(ext, a)
+    return f"{label} ({date})" if date else label
+
+
 def readme():
     releases = list_releases()
     total = sum(a["size"] for assets in releases.values() for a in assets.values())
@@ -306,19 +315,31 @@ def readme():
         f"- 每个 Release 对应「产品 × 平台 × 版本」，tag 形如 `premium-windows-18.0.3`",
         "",
     ]
+    sections, body = [], []
     for slug, (_, _, display) in PRODUCTS.items():
-        rows = []
+        by_plat = {p: [] for p in PLATFORMS}
         for tag, assets in releases.items():
             m = re.fullmatch(rf"{re.escape(slug)}-(windows|macos|linux)-(.+)", tag)
             if m and assets:
-                rows.append((vkey(m.group(2)), m.group(2), m.group(1), tag, assets))
-        if not rows:
+                by_plat[m.group(1)].append((vkey(m.group(2)), m.group(2), tag, assets))
+        if not any(by_plat.values()):
             continue
-        lines += [f"## {display}", "", "| 版本 | 平台 | 安装包 |", "| :--- | :--- | :--- |"]
-        for _, version, plat, tag, assets in sorted(rows, key=lambda r: (r[0], r[2]), reverse=True):
-            links = " · ".join(f"[{n}]({a['url']}) ({a['size'] / 2**20:.0f}M)" for n, a in sorted(assets.items()))
-            lines.append(f"| [`{version}`](https://github.com/{REPO}/releases/tag/{tag}) | {PLATFORMS[plat]} | {links} |")
-        lines.append("")
+        sections.append(display)
+        body += [f"## {display}", ""]
+        for plat, rows in by_plat.items():
+            if not rows:
+                continue
+            body += [f"### {PLATFORMS[plat]}", "", "| 版本 | 简体中文 | English |", "| :--- | :--- | :--- |"]
+            for _, version, tag, assets in sorted(rows, reverse=True):
+                cells = {lang: [] for lang in LANGS}
+                for n, a in sorted(assets.items(), key=lambda na: asset_label(na[0])):
+                    lang = re.search(r"[_-](cs|en)[_.-]", n).group(1)
+                    cells[lang].append(f"[{asset_label(n)}]({a['url']}) {a['size'] / 2**20:.0f}M")
+                body.append(f"| [`{version}`](https://github.com/{REPO}/releases/tag/{tag}) | "
+                            f"{' · '.join(cells['cs']) or '—'} | {' · '.join(cells['en']) or '—'} |")
+            body.append("")
+    nav = " · ".join(f"[{re.sub(r'^Navicat (for )?', '', d)}](#{d.lower().replace(' ', '-')})" for d in sections)
+    lines += [f"**产品导航**：{nav}", ""] + body
     lines += ["---", "本仓库仅镜像官方公开发布的原版安装包，版权归 PremiumSoft CyberTech Ltd. 所有。", ""]
     with open("README.md", "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(lines))
