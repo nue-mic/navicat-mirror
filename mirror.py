@@ -15,6 +15,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -107,7 +108,8 @@ def discover():
 
 def wayback_head(ts, url):
     """快照完整 → 返回原始 Last-Modified/大小；截断的快照 Wayback 会跳到其他时间点，这里一并校验。"""
-    for _ in range(3):
+    for i in range(5):
+        time.sleep(i * 10)  # Wayback 对 Actions 机房限流明显，失败后退避重试
         try:
             with http(f"{WAYBACK}web/{ts}id_/{url}", "HEAD") as r:
                 size, orig = r.headers.get("Content-Length"), r.headers.get("x-archive-orig-content-length")
@@ -142,7 +144,7 @@ def discover_wayback():
                 if url.rsplit("/", 1)[1] in known:
                     snaps.append((ts, url))
     print(f"Wayback 共 {len(snaps)} 个候选快照，逐个校验完整性")
-    with cf.ThreadPoolExecutor(4) as ex:  # Wayback 限流较严，并发不宜高
+    with cf.ThreadPoolExecutor(2) as ex:  # Wayback 限流较严，并发不宜高
         heads = list(ex.map(lambda s: wayback_head(*s), snaps))
     items, seen = [], set()
     for (_, url), h in zip(snaps, heads):
@@ -225,12 +227,20 @@ def asset_name(item, existing):
     return None if dated in existing else dated
 
 
-def download(url, path, size):
-    with http(url) as r, open(path, "wb") as f:
-        while chunk := r.read(1 << 20):
-            f.write(chunk)
-    if os.path.getsize(path) != size:
-        raise IOError(f"大小不符: {os.path.getsize(path)} != {size}")
+def download(url, path, size, tries=5):
+    for i in range(tries):
+        try:
+            with http(url) as r, open(path, "wb") as f:
+                while chunk := r.read(1 << 20):
+                    f.write(chunk)
+            if os.path.getsize(path) != size:
+                raise IOError(f"大小不符: {os.path.getsize(path)} != {size}")
+            return
+        except Exception as e:
+            if i == tries - 1:
+                raise
+            print(f"  重试 {i + 1}/{tries - 1}: {e}")
+            time.sleep(30 * (i + 1))
 
 
 def sync(dry_run, backfill=False):
