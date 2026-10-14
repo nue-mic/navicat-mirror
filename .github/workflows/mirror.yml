@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '17 */6 * * *' # 每 6 小时探测一次
   workflow_dispatch:
+    inputs:
+      backfill:
+        description: '从 Wayback Machine 回填已被官方覆盖的旧版本（可重复运行，已有的会跳过）'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -26,6 +31,10 @@ jobs:
 
       - name: 同步安装包到 Releases
         run: python mirror.py sync
+
+      - name: 从 Wayback 回填旧版本
+        if: inputs.backfill
+        run: python mirror.py backfill
 
       - name: 生成 README
         if: always()

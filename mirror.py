@@ -1,8 +1,9 @@
 """Navicat 安装包镜像：探测官方下载地址 → 按版本建 Release → 逐个下载上传为 assets。
 
 用法:
-    python mirror.py sync [--dry-run]   探测并同步缺失的安装包
-    python mirror.py readme             根据 Releases 重新生成 README.md
+    python mirror.py sync [--dry-run]       探测并同步缺失的安装包
+    python mirror.py backfill [--dry-run]   从 Wayback Machine 快照回填已被官方覆盖的旧版本
+    python mirror.py readme                 根据 Releases 重新生成 README.md
 依赖: Python 3 标准库 + gh CLI（需 GH_TOKEN、GITHUB_REPOSITORY 环境变量）
 """
 import concurrent.futures as cf
@@ -15,9 +16,14 @@ import subprocess
 import sys
 import tempfile
 import urllib.error
+import urllib.parse
 import urllib.request
 
 CDN = "https://dn.navicat.com/download/"
+WAYBACK = "https://web.archive.org/"
+MIN_SIZE = 20 << 20  # Wayback 里有官方早年的约 1 MiB 在线安装器，不是完整安装包
+BACKFILL = {("premium", "windows"), ("premium", "macos")}  # 回填只取最常用的组合，控制体积
+CDN_HOSTS = ["dn.navicat.com", "download.navicat.com", "download3.navicat.com"]
 NOTES_URL = "https://www.navicat.com/en/products/navicat-premium-release-note"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0 Safari/537.36"}
 REPO = os.environ.get("GITHUB_REPOSITORY", "nue-mic/navicat-mirror")
@@ -71,6 +77,10 @@ def parallel_head(names):
         return [r for r in ex.map(head, names) if r]
 
 
+def all_combos():
+    return [(c, pat) for m in MAJORS for c in [str(m)] + [f"{m}{i}" for i in range(10)] for pat in PATTERNS]
+
+
 def candidates(product, lang, combos):
     p, a, _ = PRODUCTS[product]
     return [pat.format(c=c, p=p, a=a, l=lang) for c, pat in combos]
@@ -78,9 +88,9 @@ def candidates(product, lang, combos):
 
 def discover():
     """以 Premium/en 全量探测出存在的 (版本线代号, 文件名模式)，其他产品/语言只探测这些组合。"""
-    all_combos = [(c, pat) for m in MAJORS for c in [str(m)] + [f"{m}{i}" for i in range(10)] for pat in PATTERNS]
-    found = {r["file"] for r in parallel_head(candidates("premium", "en", all_combos))}
-    combos = [cp for cp in all_combos if candidates("premium", "en", [cp])[0] in found]
+    combos = all_combos()
+    found = {r["file"] for r in parallel_head(candidates("premium", "en", combos))}
+    combos = [cp for cp in combos if candidates("premium", "en", [cp])[0] in found]
     jobs = []
     for product in PRODUCTS:
         for lang in LANGS:
@@ -92,6 +102,57 @@ def discover():
         if name in heads:
             items.append({**heads[name], "product": product, "lang": lang, "code": code,
                           "platform": platform_of(name)})
+    return items
+
+
+def wayback_head(ts, url):
+    """快照完整 → 返回原始 Last-Modified/大小；截断的快照 Wayback 会跳到其他时间点，这里一并校验。"""
+    for _ in range(3):
+        try:
+            with http(f"{WAYBACK}web/{ts}id_/{url}", "HEAD") as r:
+                size, orig = r.headers.get("Content-Length"), r.headers.get("x-archive-orig-content-length")
+                lm = r.headers.get("x-archive-orig-last-modified")
+                if not (size and lm and size == orig):
+                    return None
+                return {"size": int(size), "lm": email.utils.parsedate_to_datetime(lm), "url": r.url}
+        except urllib.error.HTTPError as e:
+            if e.code in (403, 404):
+                return None
+        except Exception:
+            pass
+    return None
+
+
+def discover_wayback():
+    """列出官方下载地址在 Wayback 的全部快照（按内容去重），只保留已知产品/语言/版本线的文件名。"""
+    known = {}
+    combos = all_combos()
+    for product in PRODUCTS:
+        for lang in LANGS:
+            for (code, _), name in zip(combos, candidates(product, lang, combos)):
+                if (product, platform_of(name)) in BACKFILL:
+                    known[name] = (product, lang, code)
+    snaps = []
+    for host in CDN_HOSTS:
+        q = urllib.parse.urlencode({"url": f"{host}/download/navicat1", "matchType": "prefix",
+                                    "fl": "timestamp,original", "filter": "statuscode:200", "collapse": "digest"})
+        with http(f"{WAYBACK}cdx/search/cdx?{q}") as r:
+            for line in r.read().decode().splitlines():
+                ts, url = line.split(" ", 1)
+                if url.rsplit("/", 1)[1] in known:
+                    snaps.append((ts, url))
+    print(f"Wayback 共 {len(snaps)} 个候选快照，逐个校验完整性")
+    with cf.ThreadPoolExecutor(4) as ex:  # Wayback 限流较严，并发不宜高
+        heads = list(ex.map(lambda s: wayback_head(*s), snaps))
+    items, seen = [], set()
+    for (_, url), h in zip(snaps, heads):
+        name = url.rsplit("/", 1)[1]
+        if not h or h["size"] < MIN_SIZE or (name, h["size"]) in seen:
+            continue
+        seen.add((name, h["size"]))
+        product, lang, code = known[name]
+        items.append({**h, "file": name, "product": product, "lang": lang, "code": code,
+                      "platform": platform_of(name)})
     return items
 
 
@@ -172,14 +233,14 @@ def download(url, path, size):
         raise IOError(f"大小不符: {os.path.getsize(path)} != {size}")
 
 
-def sync(dry_run):
+def sync(dry_run, backfill=False):
     now = dt.datetime.now(dt.timezone.utc)
     notes = load_notes()
-    items = discover()
+    items = discover_wayback() if backfill else discover()
     releases = list_releases()
-    print(f"探测到 {len(items)} 个官方文件，已有 {len(releases)} 个 Release")
+    print(f"探测到 {len(items)} 个{'Wayback 快照' if backfill else '官方文件'}，已有 {len(releases)} 个 Release")
     failed = 0
-    for it in sorted(items, key=lambda i: (i["product"], i["platform"], i["code"], i["file"])):
+    for it in sorted(items, key=lambda i: (i["product"], i["platform"], i["code"], i["file"], i["lm"])):
         version = pick_version(it, notes, now)
         if version is None:
             print(f"[暂缓] {it['file']} 更新于 {it['lm']:%F}，更新日志尚未收录新版本")
@@ -188,8 +249,9 @@ def sync(dry_run):
         name = asset_name(it, releases.get(tag, {}))
         if name is None:
             continue
-        print(f"[同步] {tag} <- {it['file']} ({it['size'] / 2**20:.0f} MiB) 作为 {name}")
+        print(f"[同步] {tag} <- {it['file']} ({it['size'] / 2**20:.0f} MiB, {it['lm']:%F}) 作为 {name}")
         if dry_run:
+            releases.setdefault(tag, {})[name] = {"name": name, "size": it["size"]}
             continue
         try:
             if tag not in releases:
@@ -198,11 +260,13 @@ def sync(dry_run):
                         f"- 文件名与官方一致，官方地址 `{CDN}<文件名>`（官方会覆盖为新版本，旧版仅此处留存）\n"
                         f"- 版本号依据官方更新日志与文件发布时间匹配得出\n"
                         f"- 官网下载页: https://www.navicat.com/en/download/navicat-premium")
+                if "url" in it:
+                    body += "\n- 旧版本已被官方覆盖，安装包取自 Wayback Machine 对官方下载地址的存档快照（已校验大小完整）"
                 gh("release", "create", tag, "--repo", REPO, "--title", title, "--notes", body, "--latest=false")
                 releases[tag] = {}
             with tempfile.TemporaryDirectory() as d:
                 path = os.path.join(d, name)
-                download(CDN + it["file"], path, it["size"])
+                download(it.get("url", CDN + it["file"]), path, it["size"])
                 gh("release", "upload", tag, path, "--repo", REPO, "--clobber")
             releases[tag][name] = {"name": name, "size": it["size"]}
         except Exception as e:
@@ -252,8 +316,8 @@ def readme():
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else ""
-    if cmd == "sync":
-        sys.exit(sync("--dry-run" in sys.argv))
+    if cmd in ("sync", "backfill"):
+        sys.exit(sync("--dry-run" in sys.argv, cmd == "backfill"))
     elif cmd == "readme":
         readme()
     else:
