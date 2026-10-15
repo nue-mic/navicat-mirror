@@ -6,7 +6,7 @@
 
 - 覆盖产品: 11 款桌面产品；语言: en / cs；版本线: 15 / 16.0~16.3 / 17 / 18
 - 平台: Windows (x64/x86) · macOS (Universal/Apple Silicon/Intel) · Linux AppImage (x86_64/aarch64)
-- 当前收录 182 个 Release，共 64.4 GiB
+- 当前收录 193 个 Release，共 75.5 GiB
 - 每个 Release 对应「产品 × 平台 × 版本」，tag 形如 `premium-windows-18.0.3`
 
 **产品导航**：[Premium](#navicat-premium) · [Premium Lite](#navicat-premium-lite) · [MySQL](#navicat-for-mysql) · [PostgreSQL](#navicat-for-postgresql) · [Oracle](#navicat-for-oracle) · [SQLite](#navicat-for-sqlite) · [SQL Server](#navicat-for-sql-server) · [MariaDB](#navicat-for-mariadb) · [MongoDB](#navicat-for-mongodb) · [Redis](#navicat-for-redis) · [Snowflake](#navicat-for-snowflake)
@@ -32,6 +32,7 @@
 
 | 版本 | 简体中文 | English |
 | :--- | :--- | :--- |
+| [`18.0.3`](https://github.com/nue-mic/navicat-mirror/releases/tag/premium-macos-18.0.3) | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/premium-macos-18.0.3/navicat18_premium_cs_arm64.dmg) 321M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/premium-macos-18.0.3/navicat18_premium_cs_x86_64.dmg) 324M | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/premium-macos-18.0.3/navicat18_premium_en_arm64.dmg) 316M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/premium-macos-18.0.3/navicat18_premium_en_x86_64.dmg) 319M |
 | [`17.3.12`](https://github.com/nue-mic/navicat-mirror/releases/tag/premium-macos-17.3.12) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/premium-macos-17.3.12/navicat17_premium_cs.dmg) 381M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/premium-macos-17.3.12/navicat17_premium_en.dmg) 375M |
 | [`17.3.10`](https://github.com/nue-mic/navicat-mirror/releases/tag/premium-macos-17.3.10) | — | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/premium-macos-17.3.10/navicat17_premium_en.dmg) 375M |
 | [`17.3.3`](https://github.com/nue-mic/navicat-mirror/releases/tag/premium-macos-17.3.3) | — | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/premium-macos-17.3.3/navicat17_premium_en.dmg) 378M |
@@ -67,6 +68,7 @@
 
 | 版本 | 简体中文 | English |
 | :--- | :--- | :--- |
+| [`18.0.3`](https://github.com/nue-mic/navicat-mirror/releases/tag/premium-lite-macos-18.0.3) | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/premium-lite-macos-18.0.3/navicat18_premium_lite_cs_arm64.dmg) 319M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/premium-lite-macos-18.0.3/navicat18_premium_lite_cs_x86_64.dmg) 322M | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/premium-lite-macos-18.0.3/navicat18_premium_lite_en_arm64.dmg) 313M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/premium-lite-macos-18.0.3/navicat18_premium_lite_en_x86_64.dmg) 316M |
 | [`17.3.12`](https://github.com/nue-mic/navicat-mirror/releases/tag/premium-lite-macos-17.3.12) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/premium-lite-macos-17.3.12/navicat17_premium_lite_cs.dmg) 379M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/premium-lite-macos-17.3.12/navicat17_premium_lite_en.dmg) 373M |
 | [`17.0.14`](https://github.com/nue-mic/navicat-mirror/releases/tag/premium-lite-macos-17.0.14) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/premium-lite-macos-17.0.14/navicat170_premium_lite_cs.dmg) 298M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/premium-lite-macos-17.0.14/navicat170_premium_lite_en.dmg) 298M |
 
@@ -96,6 +98,7 @@
 
 | 版本 | 简体中文 | English |
 | :--- | :--- | :--- |
+| [`18.0.3`](https://github.com/nue-mic/navicat-mirror/releases/tag/mysql-macos-18.0.3) | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/mysql-macos-18.0.3/navicat18_mysql_cs_arm64.dmg) 237M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/mysql-macos-18.0.3/navicat18_mysql_cs_x86_64.dmg) 250M | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/mysql-macos-18.0.3/navicat18_mysql_en_arm64.dmg) 231M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/mysql-macos-18.0.3/navicat18_mysql_en_x86_64.dmg) 245M |
 | [`17.3.12`](https://github.com/nue-mic/navicat-mirror/releases/tag/mysql-macos-17.3.12) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mysql-macos-17.3.12/navicat17_mysql_cs.dmg) 230M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mysql-macos-17.3.12/navicat17_mysql_en.dmg) 224M |
 | [`17.0.14`](https://github.com/nue-mic/navicat-mirror/releases/tag/mysql-macos-17.0.14) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mysql-macos-17.0.14/navicat170_mysql_cs.dmg) 194M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mysql-macos-17.0.14/navicat170_mysql_en.dmg) 194M |
 | [`16.3.9`](https://github.com/nue-mic/navicat-mirror/releases/tag/mysql-macos-16.3.9) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mysql-macos-16.3.9/navicat163_mysql_cs.dmg) 150M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mysql-macos-16.3.9/navicat163_mysql_en.dmg) 144M |
@@ -132,6 +135,7 @@
 
 | 版本 | 简体中文 | English |
 | :--- | :--- | :--- |
+| [`18.0.3`](https://github.com/nue-mic/navicat-mirror/releases/tag/postgresql-macos-18.0.3) | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/postgresql-macos-18.0.3/navicat18_pgsql_cs_arm64.dmg) 234M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/postgresql-macos-18.0.3/navicat18_pgsql_cs_x86_64.dmg) 247M | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/postgresql-macos-18.0.3/navicat18_pgsql_en_arm64.dmg) 229M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/postgresql-macos-18.0.3/navicat18_pgsql_en_x86_64.dmg) 242M |
 | [`17.3.12`](https://github.com/nue-mic/navicat-mirror/releases/tag/postgresql-macos-17.3.12) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/postgresql-macos-17.3.12/navicat17_pgsql_cs.dmg) 224M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/postgresql-macos-17.3.12/navicat17_pgsql_en.dmg) 218M |
 | [`17.0.14`](https://github.com/nue-mic/navicat-mirror/releases/tag/postgresql-macos-17.0.14) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/postgresql-macos-17.0.14/navicat170_pgsql_cs.dmg) 188M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/postgresql-macos-17.0.14/navicat170_pgsql_en.dmg) 188M |
 | [`16.3.9`](https://github.com/nue-mic/navicat-mirror/releases/tag/postgresql-macos-16.3.9) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/postgresql-macos-16.3.9/navicat163_pgsql_cs.dmg) 145M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/postgresql-macos-16.3.9/navicat163_pgsql_en.dmg) 139M |
@@ -168,6 +172,7 @@
 
 | 版本 | 简体中文 | English |
 | :--- | :--- | :--- |
+| [`18.0.3`](https://github.com/nue-mic/navicat-mirror/releases/tag/oracle-macos-18.0.3) | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/oracle-macos-18.0.3/navicat18_ora_cs_arm64.dmg) 302M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/oracle-macos-18.0.3/navicat18_ora_cs_x86_64.dmg) 301M | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/oracle-macos-18.0.3/navicat18_ora_en_arm64.dmg) 297M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/oracle-macos-18.0.3/navicat18_ora_en_x86_64.dmg) 296M |
 | [`17.3.12`](https://github.com/nue-mic/navicat-mirror/releases/tag/oracle-macos-17.3.12) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/oracle-macos-17.3.12/navicat17_ora_cs.dmg) 347M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/oracle-macos-17.3.12/navicat17_ora_en.dmg) 341M |
 | [`17.0.14`](https://github.com/nue-mic/navicat-mirror/releases/tag/oracle-macos-17.0.14) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/oracle-macos-17.0.14/navicat170_ora_cs.dmg) 225M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/oracle-macos-17.0.14/navicat170_ora_en.dmg) 225M |
 | [`16.3.9`](https://github.com/nue-mic/navicat-mirror/releases/tag/oracle-macos-16.3.9) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/oracle-macos-16.3.9/navicat163_ora_cs.dmg) 186M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/oracle-macos-16.3.9/navicat163_ora_en.dmg) 180M |
@@ -204,6 +209,7 @@
 
 | 版本 | 简体中文 | English |
 | :--- | :--- | :--- |
+| [`18.0.3`](https://github.com/nue-mic/navicat-mirror/releases/tag/sqlite-macos-18.0.3) | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/sqlite-macos-18.0.3/navicat18_sqlite_cs_arm64.dmg) 231M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/sqlite-macos-18.0.3/navicat18_sqlite_cs_x86_64.dmg) 243M | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/sqlite-macos-18.0.3/navicat18_sqlite_en_arm64.dmg) 226M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/sqlite-macos-18.0.3/navicat18_sqlite_en_x86_64.dmg) 238M |
 | [`17.3.12`](https://github.com/nue-mic/navicat-mirror/releases/tag/sqlite-macos-17.3.12) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/sqlite-macos-17.3.12/navicat17_sqlite_cs.dmg) 220M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/sqlite-macos-17.3.12/navicat17_sqlite_en.dmg) 213M |
 | [`17.0.14`](https://github.com/nue-mic/navicat-mirror/releases/tag/sqlite-macos-17.0.14) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/sqlite-macos-17.0.14/navicat170_sqlite_cs.dmg) 182M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/sqlite-macos-17.0.14/navicat170_sqlite_en.dmg) 182M |
 | [`16.3.9`](https://github.com/nue-mic/navicat-mirror/releases/tag/sqlite-macos-16.3.9) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/sqlite-macos-16.3.9/navicat163_sqlite_cs.dmg) 140M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/sqlite-macos-16.3.9/navicat163_sqlite_en.dmg) 133M |
@@ -240,6 +246,7 @@
 
 | 版本 | 简体中文 | English |
 | :--- | :--- | :--- |
+| [`18.0.3`](https://github.com/nue-mic/navicat-mirror/releases/tag/sqlserver-macos-18.0.3) | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/sqlserver-macos-18.0.3/navicat18_sqlserver_cs_arm64.dmg) 232M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/sqlserver-macos-18.0.3/navicat18_sqlserver_cs_x86_64.dmg) 245M | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/sqlserver-macos-18.0.3/navicat18_sqlserver_en_arm64.dmg) 227M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/sqlserver-macos-18.0.3/navicat18_sqlserver_en_x86_64.dmg) 240M |
 | [`17.3.12`](https://github.com/nue-mic/navicat-mirror/releases/tag/sqlserver-macos-17.3.12) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/sqlserver-macos-17.3.12/navicat17_sqlserver_cs.dmg) 223M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/sqlserver-macos-17.3.12/navicat17_sqlserver_en.dmg) 217M |
 | [`17.0.14`](https://github.com/nue-mic/navicat-mirror/releases/tag/sqlserver-macos-17.0.14) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/sqlserver-macos-17.0.14/navicat170_sqlserver_cs.dmg) 186M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/sqlserver-macos-17.0.14/navicat170_sqlserver_en.dmg) 186M |
 | [`16.3.9`](https://github.com/nue-mic/navicat-mirror/releases/tag/sqlserver-macos-16.3.9) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/sqlserver-macos-16.3.9/navicat163_sqlserver_cs.dmg) 144M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/sqlserver-macos-16.3.9/navicat163_sqlserver_en.dmg) 137M |
@@ -276,6 +283,7 @@
 
 | 版本 | 简体中文 | English |
 | :--- | :--- | :--- |
+| [`18.0.3`](https://github.com/nue-mic/navicat-mirror/releases/tag/mariadb-macos-18.0.3) | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/mariadb-macos-18.0.3/navicat18_mariadb_cs_arm64.dmg) 235M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/mariadb-macos-18.0.3/navicat18_mariadb_cs_x86_64.dmg) 248M | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/mariadb-macos-18.0.3/navicat18_mariadb_en_arm64.dmg) 230M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/mariadb-macos-18.0.3/navicat18_mariadb_en_x86_64.dmg) 243M |
 | [`17.3.12`](https://github.com/nue-mic/navicat-mirror/releases/tag/mariadb-macos-17.3.12) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mariadb-macos-17.3.12/navicat17_mariadb_cs.dmg) 228M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mariadb-macos-17.3.12/navicat17_mariadb_en.dmg) 221M |
 | [`17.0.14`](https://github.com/nue-mic/navicat-mirror/releases/tag/mariadb-macos-17.0.14) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mariadb-macos-17.0.14/navicat170_mariadb_cs.dmg) 191M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mariadb-macos-17.0.14/navicat170_mariadb_en.dmg) 191M |
 | [`16.3.9`](https://github.com/nue-mic/navicat-mirror/releases/tag/mariadb-macos-16.3.9) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mariadb-macos-16.3.9/navicat163_mariadb_cs.dmg) 148M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mariadb-macos-16.3.9/navicat163_mariadb_en.dmg) 141M |
@@ -312,6 +320,7 @@
 
 | 版本 | 简体中文 | English |
 | :--- | :--- | :--- |
+| [`18.0.3`](https://github.com/nue-mic/navicat-mirror/releases/tag/mongodb-macos-18.0.3) | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/mongodb-macos-18.0.3/navicat18_mongodb_cs_arm64.dmg) 233M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/mongodb-macos-18.0.3/navicat18_mongodb_cs_x86_64.dmg) 247M | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/mongodb-macos-18.0.3/navicat18_mongodb_en_arm64.dmg) 228M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/mongodb-macos-18.0.3/navicat18_mongodb_en_x86_64.dmg) 241M |
 | [`17.3.12`](https://github.com/nue-mic/navicat-mirror/releases/tag/mongodb-macos-17.3.12) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mongodb-macos-17.3.12/navicat17_mongodb_cs.dmg) 225M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mongodb-macos-17.3.12/navicat17_mongodb_en.dmg) 219M |
 | [`17.0.14`](https://github.com/nue-mic/navicat-mirror/releases/tag/mongodb-macos-17.0.14) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mongodb-macos-17.0.14/navicat170_mongodb_cs.dmg) 189M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mongodb-macos-17.0.14/navicat170_mongodb_en.dmg) 189M |
 | [`16.3.9`](https://github.com/nue-mic/navicat-mirror/releases/tag/mongodb-macos-16.3.9) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mongodb-macos-16.3.9/navicat163_mongodb_cs.dmg) 146M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/mongodb-macos-16.3.9/navicat163_mongodb_en.dmg) 140M |
@@ -345,6 +354,7 @@
 
 | 版本 | 简体中文 | English |
 | :--- | :--- | :--- |
+| [`18.0.3`](https://github.com/nue-mic/navicat-mirror/releases/tag/redis-macos-18.0.3) | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/redis-macos-18.0.3/navicat18_redis_cs_arm64.dmg) 232M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/redis-macos-18.0.3/navicat18_redis_cs_x86_64.dmg) 244M | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/redis-macos-18.0.3/navicat18_redis_en_arm64.dmg) 226M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/redis-macos-18.0.3/navicat18_redis_en_x86_64.dmg) 239M |
 | [`17.3.12`](https://github.com/nue-mic/navicat-mirror/releases/tag/redis-macos-17.3.12) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/redis-macos-17.3.12/navicat17_redis_cs.dmg) 220M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/redis-macos-17.3.12/navicat17_redis_en.dmg) 214M |
 | [`17.0.14`](https://github.com/nue-mic/navicat-mirror/releases/tag/redis-macos-17.0.14) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/redis-macos-17.0.14/navicat170_redis_cs.dmg) 183M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/redis-macos-17.0.14/navicat170_redis_en.dmg) 183M |
 | [`16.3.9`](https://github.com/nue-mic/navicat-mirror/releases/tag/redis-macos-16.3.9) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/redis-macos-16.3.9/navicat163_redis_cs.dmg) 141M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/redis-macos-16.3.9/navicat163_redis_en.dmg) 134M |
@@ -371,6 +381,7 @@
 
 | 版本 | 简体中文 | English |
 | :--- | :--- | :--- |
+| [`18.0.3`](https://github.com/nue-mic/navicat-mirror/releases/tag/snowflake-macos-18.0.3) | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/snowflake-macos-18.0.3/navicat18_snowflake_cs_arm64.dmg) 234M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/snowflake-macos-18.0.3/navicat18_snowflake_cs_x86_64.dmg) 248M | [Apple Silicon](https://github.com/nue-mic/navicat-mirror/releases/download/snowflake-macos-18.0.3/navicat18_snowflake_en_arm64.dmg) 229M · [Intel](https://github.com/nue-mic/navicat-mirror/releases/download/snowflake-macos-18.0.3/navicat18_snowflake_en_x86_64.dmg) 242M |
 | [`17.3.12`](https://github.com/nue-mic/navicat-mirror/releases/tag/snowflake-macos-17.3.12) | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/snowflake-macos-17.3.12/navicat17_snowflake_cs.dmg) 227M | [Universal](https://github.com/nue-mic/navicat-mirror/releases/download/snowflake-macos-17.3.12/navicat17_snowflake_en.dmg) 221M |
 
 ### Linux
